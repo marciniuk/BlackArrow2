@@ -1,0 +1,96 @@
+configuration {
+	font: "DejaVu Sans Mono 12";
+	width: 30;
+	line-margin: 10;
+	lines: 6;
+	columns: 2;
+
+    display-ssh:    "";
+    display-run:    "";
+    display-drun:   "";
+    display-window: "";
+    display-combi:  "";
+    show-icons:     true;
+}
+
+* {
+  ba1: #14171F;
+  ba2: #CCCCCC;
+  ba3: #1e232f;
+    foreground:       @ba2;
+    backlight:        #14171F;
+    background-color: @ba1;
+    highlight:        underline bold #153EA3;
+}
+
+window {
+    location: center;
+    anchor:   center;
+    padding: 0px;
+    border:  0px;
+    border-radius: 20px;
+
+    background-color: @ba1;
+    spacing: 0;
+    children:  [mainbox];
+    orientation: horizontal;
+}
+
+mainbox {
+    spacing: 0;
+    children: [ inputbar, message, listview ];
+}
+
+inputbar {
+    color: @ba2;
+    padding: 12px 1px 4px 12px;
+    background-color: @ba1;
+}
+
+entry {
+    background-color: @ba3;
+    padding: 6px 6px 6px 12px;
+    border-radius: 12px;
+}
+
+entry, prompt, case-indicator {
+    text-font: inherit;
+    text-color:inherit;
+}
+
+prompt {
+    padding: 6px 6px 6px 12px;
+    border-radius: 12px;
+    margin: 0em 0.3em 0em 0em ;
+}
+
+listview {
+    padding: 8px;
+    background-color: @ba1;
+    dynamic: true;
+}
+
+element {
+    padding: 4px 4px 4px 8px;
+    vertical-align: 0.5;
+    border-radius: 8px;
+    background-color: @ba1;
+    color: @ba2;
+    text-color: @ba2;
+}
+
+element selected.normal {
+	background-color: #b2bace;
+	text-color: @ba1;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+button {
+    padding: 6px;
+    color: @ba2;
+    horizontal-align: 0.5;
+}

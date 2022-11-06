@@ -12,7 +12,7 @@ then
   #1
 
   ##2
-  if ! updates_aur=$(yay -Qum | wc -l)
+  if ! updates_aur=$(paru -Qum | wc -l)
   then
     updates_aur=0
   fi

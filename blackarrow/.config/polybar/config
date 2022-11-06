@@ -60,7 +60,7 @@ monitor-strict   = false
 
 modules-left   = i3
 modules-center =
-modules-right  = covid-19 sym4 wireless-network downnet sym4 bluetooth sym volume sym4 backlight backlight-menu sym2 clock sym2 battery0 battery1 sym fastcpu coreuse cpu-turbo temperature memory picom updates-arch-aur
+modules-right  = wireless-network sym4 bluetooth sym volume volume-menu sym3 backlight backlight-menu sym2 clock sym2 battery0 battery1 sym fastcpu coreuse cpu-turbo temperature memory picom updates-arch-aur
 
 ;tray-position	= right
 ;tray-padding	= 2
@@ -75,9 +75,10 @@ bottom             = false
 line-size          = 0
 
 font-0 = "DejaVu Sans Mono:size=10;2"
-font-1 = "DejaVu Sans Mono for Powerline:size=20;3"
-font-2 = "Font Awesome 5 Brands:pixelsize=13;2"
-font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=12;2"
+font-1 = "Powerline Extra Symbols:pixelsize=19;4"
+font-2 = "DejaVu Sans Mono for Powerline:size=20;3"
+font-3 = "Font Awesome 6 Pro:style=Solid:pixelsize=12;2"
+font-4 = "Font Awesome 6 Brands:pixelsize=13;2"
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -108,8 +109,8 @@ format             = <label-state><label-mode>
 label-mode         = %mode%
 label-mode-padding = 2
 
-label-focused            = %index% %name%
-label-focused-padding    = 2
+label-focused            = %{B#181b21}%{F#CCC}%{B#CCCCCC}%{F#181b21}%index% %name%%{B#181b21}%{F#CCC}
+label-focused-padding    = 0
 label-focused-background = ${colors.foreground}
 label-focused-foreground = ${colors.background}
 label-focused-underline  = ${colors.background}
@@ -124,18 +125,6 @@ label-visible-padding = 1
 label-urgent         = %index% %name%
 label-urgent-padding = 1
 
-;~~~~~~~~~~
-; COVID-19
-;~~~~~~~~~~
-[module/covid-19]
-type = custom/script
-
-click-left  = pkill -USR1 polybar
-click-right = ~/.scripts/covid-19.sh
-interval    = 1800
-exec        = ~/.config/polybar/covid-19.sh
-label       = %output%
-
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~
 ; Wireless Network / Wi-Fi
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -148,17 +137,13 @@ label-padding      = 1
 format-connected   = <ramp-signal> <label-connected>
 format-packetloss  = <animation-packetloss>
 label-connected    = %{A1:networkmanager_dmenu& disown:}%{A3:nmcli d wifi >/dev/null 2>&1 && networkmanager_dmenu & disown:}%local_ip%%{A}%{A}
-;label-connected    = %{A1:networkmanager_dmenu& disown:}%{A3:nmcli d wifi >/dev/null 2>&1 && networkmanager_dmenu & disown:}%local_ip% |  %downspeed%  %upspeed%%{A}%{A}
-label-disconnected = %{A1:networkmanager_dmenu& disown:}%{A3:nmcli d wifi >/dev/null 2>&1 && networkmanager_dmenu & disown:} disconnected%{A}%{A}
+label-disconnected = %{A1:networkmanager_dmenu& disown:}%{A3:nmcli d wifi >/dev/null 2>&1 && networkmanager_dmenu & disown:} disconnected%{A}%{A}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
+ramp-signal-0 = 
+ramp-signal-1 = 
 ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-5 = 
 
-animation-packetloss-0            = 
+animation-packetloss-0            = 
 animation-packetloss-1            = 
 animation-packetloss-0-foreground = ${colors.moderate}
 animation-packetloss-1-foreground = ${colors.urgent}
@@ -192,7 +177,7 @@ click-right = pavucontrol
 label-muted   = "  muted"
 ramp-volume-0 = " "
 ramp-volume-1 = " "
-ramp-volume-2 = " "
+ramp-volume-2 = " "
 ramp-volume-3 = " "
 
 
@@ -209,12 +194,12 @@ label         = %percentage%%
 
 ramp-0  = 
 ramp-1  = 
-ramp-2  = 
-ramp-3  = 
-ramp-4  = 
-ramp-5  = 
-ramp-6  = 
-ramp-7  = 
+ramp-2  = 
+ramp-3  = 
+ramp-4  = 
+ramp-5  = 
+ramp-6  = 
+ramp-7  = 
 ramp-8  = 
 ramp-9  = 
 ramp-10 = 
@@ -264,7 +249,7 @@ format   = <label>
 interval = 2
 date2    = %a %d-%m%
 date     = %a, %d %b
-label    = %{A1:gsimplecal & disown:}  %date%  %time% %{A}
+label    = %{A1:gsimplecal & disown:}  %date%  %time% %{A}
 
 ; 24h system
 time = %R
@@ -354,7 +339,7 @@ type = custom/script
 
 interval = 5
 exec  = ~/.scripts/fast.sh
-label = %{F#B81C1C}%output%
+label = %{F#C62D3F}%output%
 
 [module/coreuse]
 type = internal/cpu
@@ -457,9 +442,8 @@ type = custom/script
 exec        = ~/.scripts/pakiety.sh
 label       = | %output%
 click-left  = termite --name "Update" -e "/home/adrian/.scripts/yay.sh" && xdotool key "super+bracketright" & disown:
-click-right = yes | LC_ALL=en_US.UTF-8 yay |& tee -a ~/.yay-log/"$(date +%Y-%m-%d\ %H:%M:%S)".log &> /dev/null && pkill -USR1 polybar & disown:
+click-right = yes | LC_ALL=en_US.UTF-8 paru |& tee -a ~/.yay-log/"$(date +%Y-%m-%d\ %H:%M:%S)".log &> /dev/null && pkill -USR1 polybar & disown:
 interval    = 600
-
 
 ;~~~~~~~
 ; Picom
@@ -472,6 +456,17 @@ label      = %output%
 interval   = 5
 click-left = ~/.scripts/picom.sh --toggle && xdotool key "super+bracketright"
 
+;~~~~~~~~~~
+; COVID-19
+;~~~~~~~~~~
+[module/covid-19]
+type = custom/script
+
+click-left  = pkill -USR1 polybar
+click-right = ~/.scripts/covid-19.sh
+interval    = 1800
+exec        = ~/.config/polybar/covid-19.sh
+label       = %output%
 
 ;~~~~~~~~~
 ; DownNet

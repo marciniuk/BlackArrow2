@@ -122,6 +122,9 @@
 	# If you have a numpad you may want to enable this #
 		exec_always --no-startup-id numlockx on
 
+	# Bitwarden #
+		exec --no-startup-id bitwarden-desktop
+
 	# Gamma #
 		exec --no-startup-id xgamma -rgamma 1.15 -ggamma 1.15 -bgamma 1.175
 
@@ -166,7 +169,7 @@
 		bindsym $Mod+bracketright exec .config/polybar/launch.sh
 
 	# Launcher #
-		bindsym $Mod+d exec rofi -show drun -bw 3
+		bindsym $Mod+d exec rofi -show drun -theme blackarrow -bw 3
 		bindsym $Mod+a exec --no-startup-id i3-dmenu-desktop
 
 	# Logout #
@@ -197,6 +200,20 @@
 
 	# Control - XF86 bindings #
 		bindsym XF86Tools exec --no-startup-id ~/.scripts/configuration.sh
+
+	# Power button - XF86 bindings
+		bindsym XF86PowerOff exec --no-startup-id echo 0 | sudo tee /sys/class/leds/tpacpi::kbd_backlight/brightness && betterlockscreen --lock
+
+
+##############
+# Scratchpad #
+##############
+	bindsym $Mod+h [class="Bitwarden"] scratchpad show; [class="Bitwarden"] move position center
+
+	for_window [class="Bitwarden"] move scratchpad
+	for_window [class="Bitwarden"] border pixel 3
+	for_window [class="Bitwarden"] resize set 1280 720
+
 
 ######################
 # Workspace Bindings #
@@ -324,6 +341,7 @@
 	# Games (WS8) #
 		assign [class="Steam"]              workspace $ws8
 		assign [class="minecraft-launcher"] workspace $ws8
+		assign [class="minecraft"]    workspace $ws8
 
 	# Audio (WS9) #
 		for_window [class="Spotify"]        move to workspace $ws9, workspace --no-auto-back-and-forth $ws9
@@ -338,7 +356,7 @@
 #####################
 # Specific programs #
 #####################
-	for_window [class="Gnome-calculator"] floating toggle
+	for_window [class="gnome-calculator"] floating toggle
 
 
 ####################
@@ -371,12 +389,13 @@
 	bindsym $Mod+b       exec --no-startup-id calibre
 	bindsym $Moe+Shift+p exec --no-startup-id com.github.ronnydo.colorpicker
 	bindsym $Mod+k       exec --no-startup-id gnome-calculator
-    bindsym $Mod+m       exec --no-startup-id xdotool key "super+8" && minecraft-launcher
+	bindsym $Mod+m       exec --no-startup-id ~/.scripts/mc.sh
 
 
 #########################
 # Applications settings #
 #########################
+	for_window [class="Minecraft"] move container to workspace $ws8
 	for_window [class="Gsimplecal"] resize set 225 230
 	for_window [class="nvim-qt"]    focus
 

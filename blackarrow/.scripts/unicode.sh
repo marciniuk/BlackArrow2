@@ -4,7 +4,7 @@
 
 xclip -h 2>/dev/null || exit
 
-CHOSEN=$(sed '0,/^__DATA__$/d' "$0" | rofi -dmenu -i -l 15 -p 'Unicode')
+CHOSEN=$(sed '0,/^__DATA__$/d' "$0" | rofi -dmenu -theme blackarrow -i -l 15 -p 'Unicode:')
 
 [ "$CHOSEN" != "" ] || exit
 
@@ -39,7 +39,6 @@ __DATA__
 🤩 star-struck; U+1F929
 😘 face blowing a kiss; U+1F618
 😗 kissing face; U+1F617
-☺ smiling face; U+263A
 😚 kissing face with closed eyes; U+1F61A
 😙 kissing face with smiling eyes; U+1F619
 😋 face savoring food; U+1F60B
@@ -85,7 +84,6 @@ __DATA__
 😕 confused face; U+1F615
 😟 worried face; U+1F61F
 🙁 slightly frowning face; U+1F641
-☹ frowning face; U+2639
 😮 face with open mouth; U+1F62E
 😯 hushed face; U+1F62F
 😲 astonished face; U+1F632
@@ -112,7 +110,6 @@ __DATA__
 😈 smiling face with horns; U+1F608
 👿 angry face with horns; U+1F47F
 💀 skull; U+1F480
-☠ skull and crossbones; U+2620
 💩 pile of poo; U+1F4A9
 🤡 clown face; U+1F921
 👹 ogre; U+1F479
@@ -145,7 +142,7 @@ __DATA__
 💟 heart decoration; U+1F49F
 ❣ heavy heart exclamation; U+2763
 💔 broken heart; U+1F494
-❤ red heart; U+2764
+❤️ red heart; U+2764
 🧡 orange heart; U+1F9E1
 💛 yellow heart; U+1F49B
 💚 green heart; U+1F49A
@@ -207,7 +204,7 @@ __DATA__
 🦷 tooth; U+1F9B7
 🦴 bone; U+1F9B4
 👀 eyes; U+1F440
-👁 eye; U+1F441
+👁️ eye; U+1F441
 👅 tongue; U+1F445
 👄 mouth; U+1F444
 👶 baby; U+1F476
@@ -562,7 +559,7 @@ __DATA__
 💐 bouquet; U+1F490
 🌸 cherry blossom; U+1F338
 💮 white flower; U+1F4AE
-🏵 rosette; U+1F3F5
+i🏵️ rosette; U+1F3F5
 🌹 rose; U+1F339
 🥀 wilted flower; U+1F940
 🌺 hibiscus; U+1F33A

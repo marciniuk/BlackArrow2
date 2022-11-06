@@ -12,12 +12,13 @@
     transparency = 0
     notification_height = 0
     separator_height = 0
-    padding = 6
-    horizontal_padding = 6
+    padding = 10
+    horizontal_padding = 13
     frame_width = 2
     separator_color = frame
     sort = yes
     idle_threshold = 0
+    corner_radius = 12
 
     ### Text ###
 
@@ -38,8 +39,8 @@
     ### Icons ###
 
     icon_position = left
-    max_icon_size = 32
-	icon_path = /kthxbye
+    max_icon_size = 64
+	  icon_path = /kthxbye
 
     ### History ###
 

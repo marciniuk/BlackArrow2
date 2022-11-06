@@ -65,12 +65,25 @@
 	BROWSER=/usr/bin/google-chrome-stable
 	neofetch --color_blocks off | lolcat
 
-	prompt_context() {
-		if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]
-  		then
-    		prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-		fi
-	}
+	if [ "$TERM" != "dumb" ]; then
+    	eval "`dircolors ~/.dircolors`"
+    	alias ls='ls --color=auto'
+    	#alias dir='ls --color=auto --format=vertical'
+    	#alias vdir='ls --color=auto --format=long'
+	fi
+
+	zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+	autoload -Uz compinit
+	compinit
+
+	cds() { cd "$*"; }
+
+#	prompt_context() {
+#		if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]
+#  		then
+#    		prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+#		fi
+#	}
 
 # ____  _            _        _                                   #
 #| __ )| | __ _  ___| | __   / \   _ __ _ __ _____      __       ###

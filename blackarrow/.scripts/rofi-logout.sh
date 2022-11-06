@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TASK="$(rofi -bw 4 -sep "|" -dmenu -i -p 'System' -width 20 \
+TASK="$(rofi -theme blackarrow -bw 4 -sep "|" -dmenu -i -p 'System' -width 20 \
 -hide-scrollbar -line-padding 4 -padding 20 \
 -lines 5 <<< " Lock| Shutdown| Reboot| Logout| Suspend")"
 

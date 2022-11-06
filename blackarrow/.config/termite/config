@@ -17,6 +17,7 @@ dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
 font = DejaVu Sans Mono for Powerline 11
+#font = Powerline Extra Symbols
 scrollback_lines = 10000
 search_wrap = true
 icon_name = utilities-terminal
